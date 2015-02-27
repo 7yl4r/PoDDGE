@@ -1,12 +1,20 @@
-<fieldset class="form-group">
-    <label for="milestone">milestone #N</label>
-    <input type="text" class="form-control" id="milestone" placeholder="name of milestone">
-</fieldset>
-<fieldset class="form-group">
-    <label for="hours">estimate</label>
-    <input type="number" class="form-control" id="hours" placeholder="hours needed">
-</fieldset>
-<fieldset class="form-group">
-    <label for="uncertainty">uncertainty</label>
-    <input type="number" class="form-control" id="uncertainty" placeholder="+- hours">
-</fieldset>
+<form name="milestoneForm">
+    <fieldset class="form-group">
+        <label for="milestone">milestone #N</label>
+        <input type="text" class="form-control"
+               id="milestone" placeholder="name of milestone"
+               ng-model="editor.milestones[$index].name">
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="hours">estimate</label>
+        <input type="number" class="form-control"
+               id="hours" placeholder="hours needed"
+               ng-model="editor.milestones[$index].hours">
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="uncertainty">uncertainty</label>
+        <input type="number" class="form-control"
+               id="uncertainty" placeholder="+- hours"
+               ng-model="editor.milestones[$index].uncertainty">
+    </fieldset>
+</form>
