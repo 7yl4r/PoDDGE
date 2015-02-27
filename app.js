@@ -33,7 +33,6 @@
                 data.push([t, p]);
             }
             cumulative += entry.hours;
-
         });
 
         $scope.exampleData = [

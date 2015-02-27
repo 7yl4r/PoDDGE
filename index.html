@@ -60,13 +60,16 @@
             <div ng-controller="graphCtrl">
                 <nvd3-line-chart
                         data="exampleData"
-                        width="500"
-                        height="150"
+                        width="600"
+                        height="140"
                         showXAxis="true"
                         showYAxis="true"
                         interactive="true"
                         xAxisTickFormat="xAxisTickFormat_Date_Format()"
-                        yAxisTickFormat="yAxisFormatFunction()">
+                        yAxisTickFormat="yAxisFormatFunction()"
+                        yAxisLabel="probability of delivery"
+                        xAxisLabel="number of hours"
+                        margin="{left:80,top:20,bottom:40,right:10}">
                 </nvd3-line-chart>
             </div>
 
