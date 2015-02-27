@@ -13,10 +13,19 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
     <!-- Font Awesome -->
     <link href="font/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- d3 graphs -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.7.0/nv.d3.min.css" rel="stylesheet"/>
 
     <!-- === JS libs === -->
+    <!-- angular core -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <!-- app modules -->
     <script type="text/javascript" src="milestoneFormDirectives.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <!-- d3 graphs -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.7.0/nv.d3.min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/angularjs-nvd3-directives/angularjs-nvd3-directives/master/dist/angularjs-nvd3-directives.min.js"></script> <!-- TODO: dev/testing url only, update via rawgit for prod. -->
 </head>
 <body ng-controller="editorController as editor">
     <header class="header">
@@ -48,7 +57,24 @@
     <div id="#top"></div>
     <section id="home" class="container">
         <div id="graph" class="row">
-            display here<br><br><br><br><br><br><br><br><br><br>
+            <div ng-controller="graphCtrl">
+                <nvd3-line-chart
+                        data="exampleData"
+                        width="500"
+                        height="150"
+                        showXAxis="true"
+                        showYAxis="true"
+                        interactive="true"
+                        xAxisTickFormat="xAxisTickFormat_Date_Format()"
+                        yAxisTickFormat="yAxisFormatFunction()">
+                </nvd3-line-chart>
+            </div>
+
+            milestones=[
+            <span ng-repeat="milestone in editor.milestones">
+                ({{milestone.name}}:{{milestone.hours}}+/-{{milestone.uncertainty}}),
+            </span>
+            ]
         </div>
         <div class="row">
             <div id="milestones" class="col-lg-3" ng-repeat="milestone in editor.milestones">
@@ -60,5 +86,4 @@
             </div>
         </div>
     </section>
-    <script type="text/javascript" src="app.js"></script>
 </body>
