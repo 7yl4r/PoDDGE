@@ -24,22 +24,18 @@
         var cumulative = 0;
         var nSamples = 10; // 1/2 number of samples per distribution curve
         app.milestones.forEach(function(entry){
+            data.push({key:entry.name, values:[]});
             for(var i = -nSamples; i <= nSamples; i++){
                 var t = cumulative + entry.hours + entry.uncertainty * i/nSamples;
                 var sigma = entry.uncertainty/2;
                 var mu = cumulative + entry.hours;
                 var p = Math.exp( - Math.pow(t-mu, 2)/(2*Math.pow(sigma, 2))  )
                         /(sigma*Math.sqrt(2*Math.PI));
-                data.push([t, p]);
+                data[data.length-1]["values"].push([t, p]);
             }
             cumulative += entry.hours;
         });
 
-        $scope.exampleData = [
-            {
-                "key": "Series 1",
-                "values": data
-            }
-        ];
+        $scope.exampleData = data;
     });
 })();
